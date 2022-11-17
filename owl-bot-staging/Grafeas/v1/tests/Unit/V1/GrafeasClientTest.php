@@ -22,7 +22,6 @@
 
 namespace Grafeas\Tests\Unit\V1;
 
-use Grafeas\V1\GrafeasClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
@@ -31,6 +30,7 @@ use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use Grafeas\V1\BatchCreateNotesResponse;
 use Grafeas\V1\BatchCreateOccurrencesResponse;
+use Grafeas\V1\GrafeasClient;
 use Grafeas\V1\ListNoteOccurrencesResponse;
 use Grafeas\V1\ListNotesResponse;
 use Grafeas\V1\ListOccurrencesResponse;
