@@ -79,9 +79,7 @@ use Grafeas\V1\UpdateOccurrenceRequest;
  * ```
  * $grafeasClient = new GrafeasClient();
  * try {
- *     $formattedParent = $grafeasClient->projectName('[PROJECT]');
- *     $notes = [];
- *     $response = $grafeasClient->batchCreateNotes($formattedParent, $notes);
+ *     $response = $grafeasClient->batchCreateNotes();
  * } finally {
  *     $grafeasClient->close();
  * }
@@ -346,20 +344,20 @@ class GrafeasGapicClient
      * ```
      * $grafeasClient = new GrafeasClient();
      * try {
-     *     $formattedParent = $grafeasClient->projectName('[PROJECT]');
-     *     $notes = [];
-     *     $response = $grafeasClient->batchCreateNotes($formattedParent, $notes);
+     *     $response = $grafeasClient->batchCreateNotes();
      * } finally {
      *     $grafeasClient->close();
      * }
      * ```
      *
-     * @param string $parent       The name of the project in the form of `projects/[PROJECT_ID]`, under which
-     *                             the notes are to be created.
-     * @param array  $notes        The notes to create. Max allowed length is 1000.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           The name of the project in the form of `projects/[PROJECT_ID]`, under which
+     *           the notes are to be created.
+     *     @type array $notes
+     *           The notes to create. Max allowed length is 1000.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -370,13 +368,19 @@ class GrafeasGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchCreateNotes($parent, $notes, array $optionalArgs = [])
+    public function batchCreateNotes(array $optionalArgs = [])
     {
         $request = new BatchCreateNotesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setNotes($notes);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['notes'])) {
+            $request->setNotes($optionalArgs['notes']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('BatchCreateNotes', BatchCreateNotesResponse::class, $optionalArgs, $request)->wait();
@@ -389,20 +393,20 @@ class GrafeasGapicClient
      * ```
      * $grafeasClient = new GrafeasClient();
      * try {
-     *     $formattedParent = $grafeasClient->projectName('[PROJECT]');
-     *     $occurrences = [];
-     *     $response = $grafeasClient->batchCreateOccurrences($formattedParent, $occurrences);
+     *     $response = $grafeasClient->batchCreateOccurrences();
      * } finally {
      *     $grafeasClient->close();
      * }
      * ```
      *
-     * @param string       $parent       The name of the project in the form of `projects/[PROJECT_ID]`, under which
-     *                                   the occurrences are to be created.
-     * @param Occurrence[] $occurrences  The occurrences to create. Max allowed length is 1000.
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           The name of the project in the form of `projects/[PROJECT_ID]`, under which
+     *           the occurrences are to be created.
+     *     @type Occurrence[] $occurrences
+     *           The occurrences to create. Max allowed length is 1000.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -413,13 +417,19 @@ class GrafeasGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchCreateOccurrences($parent, $occurrences, array $optionalArgs = [])
+    public function batchCreateOccurrences(array $optionalArgs = [])
     {
         $request = new BatchCreateOccurrencesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setOccurrences($occurrences);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['occurrences'])) {
+            $request->setOccurrences($optionalArgs['occurrences']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('BatchCreateOccurrences', BatchCreateOccurrencesResponse::class, $optionalArgs, $request)->wait();
@@ -432,22 +442,22 @@ class GrafeasGapicClient
      * ```
      * $grafeasClient = new GrafeasClient();
      * try {
-     *     $formattedParent = $grafeasClient->projectName('[PROJECT]');
-     *     $noteId = 'note_id';
-     *     $note = new Note();
-     *     $response = $grafeasClient->createNote($formattedParent, $noteId, $note);
+     *     $response = $grafeasClient->createNote();
      * } finally {
      *     $grafeasClient->close();
      * }
      * ```
      *
-     * @param string $parent       The name of the project in the form of `projects/[PROJECT_ID]`, under which
-     *                             the note is to be created.
-     * @param string $noteId       The ID to use for this note.
-     * @param Note   $note         The note to create.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           The name of the project in the form of `projects/[PROJECT_ID]`, under which
+     *           the note is to be created.
+     *     @type string $noteId
+     *           The ID to use for this note.
+     *     @type Note $note
+     *           The note to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -458,14 +468,23 @@ class GrafeasGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createNote($parent, $noteId, $note, array $optionalArgs = [])
+    public function createNote(array $optionalArgs = [])
     {
         $request = new CreateNoteRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setNoteId($noteId);
-        $request->setNote($note);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['noteId'])) {
+            $request->setNoteId($optionalArgs['noteId']);
+        }
+
+        if (isset($optionalArgs['note'])) {
+            $request->setNote($optionalArgs['note']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateNote', Note::class, $optionalArgs, $request)->wait();
@@ -478,20 +497,20 @@ class GrafeasGapicClient
      * ```
      * $grafeasClient = new GrafeasClient();
      * try {
-     *     $formattedParent = $grafeasClient->projectName('[PROJECT]');
-     *     $occurrence = new Occurrence();
-     *     $response = $grafeasClient->createOccurrence($formattedParent, $occurrence);
+     *     $response = $grafeasClient->createOccurrence();
      * } finally {
      *     $grafeasClient->close();
      * }
      * ```
      *
-     * @param string     $parent       The name of the project in the form of `projects/[PROJECT_ID]`, under which
-     *                                 the occurrence is to be created.
-     * @param Occurrence $occurrence   The occurrence to create.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           The name of the project in the form of `projects/[PROJECT_ID]`, under which
+     *           the occurrence is to be created.
+     *     @type Occurrence $occurrence
+     *           The occurrence to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -502,13 +521,19 @@ class GrafeasGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createOccurrence($parent, $occurrence, array $optionalArgs = [])
+    public function createOccurrence(array $optionalArgs = [])
     {
         $request = new CreateOccurrenceRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setOccurrence($occurrence);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['occurrence'])) {
+            $request->setOccurrence($optionalArgs['occurrence']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateOccurrence', Occurrence::class, $optionalArgs, $request)->wait();
@@ -521,18 +546,18 @@ class GrafeasGapicClient
      * ```
      * $grafeasClient = new GrafeasClient();
      * try {
-     *     $formattedName = $grafeasClient->noteName('[PROJECT]', '[NOTE]');
-     *     $grafeasClient->deleteNote($formattedName);
+     *     $grafeasClient->deleteNote();
      * } finally {
      *     $grafeasClient->close();
      * }
      * ```
      *
-     * @param string $name         The name of the note in the form of
-     *                             `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           The name of the note in the form of
+     *           `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -541,12 +566,15 @@ class GrafeasGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteNote($name, array $optionalArgs = [])
+    public function deleteNote(array $optionalArgs = [])
     {
         $request = new DeleteNoteRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteNote', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -561,18 +589,18 @@ class GrafeasGapicClient
      * ```
      * $grafeasClient = new GrafeasClient();
      * try {
-     *     $formattedName = $grafeasClient->occurrenceName('[PROJECT]', '[OCCURRENCE]');
-     *     $grafeasClient->deleteOccurrence($formattedName);
+     *     $grafeasClient->deleteOccurrence();
      * } finally {
      *     $grafeasClient->close();
      * }
      * ```
      *
-     * @param string $name         The name of the occurrence in the form of
-     *                             `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           The name of the occurrence in the form of
+     *           `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -581,12 +609,15 @@ class GrafeasGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteOccurrence($name, array $optionalArgs = [])
+    public function deleteOccurrence(array $optionalArgs = [])
     {
         $request = new DeleteOccurrenceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteOccurrence', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -599,18 +630,18 @@ class GrafeasGapicClient
      * ```
      * $grafeasClient = new GrafeasClient();
      * try {
-     *     $formattedName = $grafeasClient->noteName('[PROJECT]', '[NOTE]');
-     *     $response = $grafeasClient->getNote($formattedName);
+     *     $response = $grafeasClient->getNote();
      * } finally {
      *     $grafeasClient->close();
      * }
      * ```
      *
-     * @param string $name         The name of the note in the form of
-     *                             `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           The name of the note in the form of
+     *           `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -621,12 +652,15 @@ class GrafeasGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getNote($name, array $optionalArgs = [])
+    public function getNote(array $optionalArgs = [])
     {
         $request = new GetNoteRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetNote', Note::class, $optionalArgs, $request)->wait();
@@ -639,18 +673,18 @@ class GrafeasGapicClient
      * ```
      * $grafeasClient = new GrafeasClient();
      * try {
-     *     $formattedName = $grafeasClient->occurrenceName('[PROJECT]', '[OCCURRENCE]');
-     *     $response = $grafeasClient->getOccurrence($formattedName);
+     *     $response = $grafeasClient->getOccurrence();
      * } finally {
      *     $grafeasClient->close();
      * }
      * ```
      *
-     * @param string $name         The name of the occurrence in the form of
-     *                             `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           The name of the occurrence in the form of
+     *           `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -661,12 +695,15 @@ class GrafeasGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getOccurrence($name, array $optionalArgs = [])
+    public function getOccurrence(array $optionalArgs = [])
     {
         $request = new GetOccurrenceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetOccurrence', Occurrence::class, $optionalArgs, $request)->wait();
@@ -680,18 +717,18 @@ class GrafeasGapicClient
      * ```
      * $grafeasClient = new GrafeasClient();
      * try {
-     *     $formattedName = $grafeasClient->occurrenceName('[PROJECT]', '[OCCURRENCE]');
-     *     $response = $grafeasClient->getOccurrenceNote($formattedName);
+     *     $response = $grafeasClient->getOccurrenceNote();
      * } finally {
      *     $grafeasClient->close();
      * }
      * ```
      *
-     * @param string $name         The name of the occurrence in the form of
-     *                             `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           The name of the occurrence in the form of
+     *           `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -702,12 +739,15 @@ class GrafeasGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getOccurrenceNote($name, array $optionalArgs = [])
+    public function getOccurrenceNote(array $optionalArgs = [])
     {
         $request = new GetOccurrenceNoteRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetOccurrenceNote', Note::class, $optionalArgs, $request)->wait();
@@ -722,9 +762,8 @@ class GrafeasGapicClient
      * ```
      * $grafeasClient = new GrafeasClient();
      * try {
-     *     $formattedName = $grafeasClient->noteName('[PROJECT]', '[NOTE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $grafeasClient->listNoteOccurrences($formattedName);
+     *     $pagedResponse = $grafeasClient->listNoteOccurrences();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -732,7 +771,7 @@ class GrafeasGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $grafeasClient->listNoteOccurrences($formattedName);
+     *     $pagedResponse = $grafeasClient->listNoteOccurrences();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -741,11 +780,12 @@ class GrafeasGapicClient
      * }
      * ```
      *
-     * @param string $name         The name of the note to list occurrences for in the form of
-     *                             `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           The name of the note to list occurrences for in the form of
+     *           `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
      *     @type string $filter
      *           The filter expression.
      *     @type int $pageSize
@@ -767,12 +807,15 @@ class GrafeasGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listNoteOccurrences($name, array $optionalArgs = [])
+    public function listNoteOccurrences(array $optionalArgs = [])
     {
         $request = new ListNoteOccurrencesRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -797,9 +840,8 @@ class GrafeasGapicClient
      * ```
      * $grafeasClient = new GrafeasClient();
      * try {
-     *     $formattedParent = $grafeasClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $grafeasClient->listNotes($formattedParent);
+     *     $pagedResponse = $grafeasClient->listNotes();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -807,7 +849,7 @@ class GrafeasGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $grafeasClient->listNotes($formattedParent);
+     *     $pagedResponse = $grafeasClient->listNotes();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -816,11 +858,12 @@ class GrafeasGapicClient
      * }
      * ```
      *
-     * @param string $parent       The name of the project to list notes for in the form of
-     *                             `projects/[PROJECT_ID]`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           The name of the project to list notes for in the form of
+     *           `projects/[PROJECT_ID]`.
      *     @type string $filter
      *           The filter expression.
      *     @type int $pageSize
@@ -842,12 +885,15 @@ class GrafeasGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listNotes($parent, array $optionalArgs = [])
+    public function listNotes(array $optionalArgs = [])
     {
         $request = new ListNotesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -872,9 +918,8 @@ class GrafeasGapicClient
      * ```
      * $grafeasClient = new GrafeasClient();
      * try {
-     *     $formattedParent = $grafeasClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $grafeasClient->listOccurrences($formattedParent);
+     *     $pagedResponse = $grafeasClient->listOccurrences();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -882,7 +927,7 @@ class GrafeasGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $grafeasClient->listOccurrences($formattedParent);
+     *     $pagedResponse = $grafeasClient->listOccurrences();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -891,11 +936,12 @@ class GrafeasGapicClient
      * }
      * ```
      *
-     * @param string $parent       The name of the project to list occurrences for in the form of
-     *                             `projects/[PROJECT_ID]`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           The name of the project to list occurrences for in the form of
+     *           `projects/[PROJECT_ID]`.
      *     @type string $filter
      *           The filter expression.
      *     @type int $pageSize
@@ -917,12 +963,15 @@ class GrafeasGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listOccurrences($parent, array $optionalArgs = [])
+    public function listOccurrences(array $optionalArgs = [])
     {
         $request = new ListOccurrencesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -947,20 +996,20 @@ class GrafeasGapicClient
      * ```
      * $grafeasClient = new GrafeasClient();
      * try {
-     *     $formattedName = $grafeasClient->noteName('[PROJECT]', '[NOTE]');
-     *     $note = new Note();
-     *     $response = $grafeasClient->updateNote($formattedName, $note);
+     *     $response = $grafeasClient->updateNote();
      * } finally {
      *     $grafeasClient->close();
      * }
      * ```
      *
-     * @param string $name         The name of the note in the form of
-     *                             `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
-     * @param Note   $note         The updated note.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           The name of the note in the form of
+     *           `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
+     *     @type Note $note
+     *           The updated note.
      *     @type FieldMask $updateMask
      *           The fields to update.
      *     @type RetrySettings|array $retrySettings
@@ -973,13 +1022,19 @@ class GrafeasGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateNote($name, $note, array $optionalArgs = [])
+    public function updateNote(array $optionalArgs = [])
     {
         $request = new UpdateNoteRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setNote($note);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['note'])) {
+            $request->setNote($optionalArgs['note']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -996,20 +1051,20 @@ class GrafeasGapicClient
      * ```
      * $grafeasClient = new GrafeasClient();
      * try {
-     *     $formattedName = $grafeasClient->occurrenceName('[PROJECT]', '[OCCURRENCE]');
-     *     $occurrence = new Occurrence();
-     *     $response = $grafeasClient->updateOccurrence($formattedName, $occurrence);
+     *     $response = $grafeasClient->updateOccurrence();
      * } finally {
      *     $grafeasClient->close();
      * }
      * ```
      *
-     * @param string     $name         The name of the occurrence in the form of
-     *                                 `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
-     * @param Occurrence $occurrence   The updated occurrence.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           The name of the occurrence in the form of
+     *           `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
+     *     @type Occurrence $occurrence
+     *           The updated occurrence.
      *     @type FieldMask $updateMask
      *           The fields to update.
      *     @type RetrySettings|array $retrySettings
@@ -1022,13 +1077,19 @@ class GrafeasGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateOccurrence($name, $occurrence, array $optionalArgs = [])
+    public function updateOccurrence(array $optionalArgs = [])
     {
         $request = new UpdateOccurrenceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setOccurrence($occurrence);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['occurrence'])) {
+            $request->setOccurrence($optionalArgs['occurrence']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
