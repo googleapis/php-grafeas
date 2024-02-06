@@ -27,23 +27,25 @@ use Google\ApiCore\ApiException;
 use Grafeas\V1\BatchCreateOccurrencesRequest;
 use Grafeas\V1\BatchCreateOccurrencesResponse;
 use Grafeas\V1\Client\GrafeasClient;
+use Grafeas\V1\Occurrence;
 
 /**
  * Creates new occurrences in batch.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The name of the project in the form of `projects/[PROJECT_ID]`, under which
+ *                                the occurrences are to be created. Please see
+ *                                {@see GrafeasClient::projectName()} for help formatting this field.
  */
-function batch_create_occurrences_sample(): void
+function batch_create_occurrences_sample(string $formattedParent): void
 {
     // Create a client.
     $grafeasClient = new GrafeasClient();
 
     // Prepare the request message.
-    $request = new BatchCreateOccurrencesRequest();
+    $occurrences = [new Occurrence()];
+    $request = (new BatchCreateOccurrencesRequest())
+        ->setParent($formattedParent)
+        ->setOccurrences($occurrences);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +55,21 @@ function batch_create_occurrences_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = GrafeasClient::projectName('[PROJECT]');
+
+    batch_create_occurrences_sample($formattedParent);
 }
 // [END containeranalysis_v1_generated_Grafeas_BatchCreateOccurrences_sync]

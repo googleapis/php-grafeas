@@ -38,6 +38,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'note_id',
+                ],
             ],
             'CreateOccurrence' => [
                 'method' => 'post',

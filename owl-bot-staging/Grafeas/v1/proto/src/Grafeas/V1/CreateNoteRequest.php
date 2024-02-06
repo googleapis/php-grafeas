@@ -37,7 +37,8 @@ class CreateNoteRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string           $parent The name of the project in the form of `projects/[PROJECT_ID]`, under which
-     *                                 the note is to be created.
+     *                                 the note is to be created. Please see
+     *                                 {@see GrafeasClient::projectName()} for help formatting this field.
      * @param string           $noteId The ID to use for this note.
      * @param \Grafeas\V1\Note $note   The note to create.
      *

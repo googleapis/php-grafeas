@@ -31,7 +31,8 @@ class BatchCreateNotesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent The name of the project in the form of `projects/[PROJECT_ID]`, under which
-     *                       the notes are to be created.
+     *                       the notes are to be created. Please see
+     *                       {@see GrafeasClient::projectName()} for help formatting this field.
      * @param array  $notes  The notes to create. Max allowed length is 1000.
      *
      * @return \Grafeas\V1\BatchCreateNotesRequest

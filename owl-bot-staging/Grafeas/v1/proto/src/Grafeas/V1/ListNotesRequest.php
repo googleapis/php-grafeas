@@ -44,7 +44,8 @@ class ListNotesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent The name of the project to list notes for in the form of
-     *                       `projects/[PROJECT_ID]`.
+     *                       `projects/[PROJECT_ID]`. Please see
+     *                       {@see GrafeasClient::projectName()} for help formatting this field.
      * @param string $filter The filter expression.
      *
      * @return \Grafeas\V1\ListNotesRequest

@@ -91,7 +91,15 @@ class GrafeasClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new BatchCreateNotesResponse();
         $transport->addResponse($expectedResponse);
-        $request = new BatchCreateNotesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $notesValue = new Note();
+        $notes = [
+            'notesKey' => $notesValue,
+        ];
+        $request = (new BatchCreateNotesRequest())
+            ->setParent($formattedParent)
+            ->setNotes($notes);
         $response = $gapicClient->batchCreateNotes($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -99,6 +107,10 @@ class GrafeasClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/grafeas.v1.Grafeas/BatchCreateNotes', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNotes();
+        $this->assertProtobufEquals($notes, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -120,7 +132,15 @@ class GrafeasClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new BatchCreateNotesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $notesValue = new Note();
+        $notes = [
+            'notesKey' => $notesValue,
+        ];
+        $request = (new BatchCreateNotesRequest())
+            ->setParent($formattedParent)
+            ->setNotes($notes);
         try {
             $gapicClient->batchCreateNotes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -145,7 +165,12 @@ class GrafeasClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new BatchCreateOccurrencesResponse();
         $transport->addResponse($expectedResponse);
-        $request = new BatchCreateOccurrencesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $occurrences = [];
+        $request = (new BatchCreateOccurrencesRequest())
+            ->setParent($formattedParent)
+            ->setOccurrences($occurrences);
         $response = $gapicClient->batchCreateOccurrences($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -153,6 +178,10 @@ class GrafeasClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/grafeas.v1.Grafeas/BatchCreateOccurrences', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getOccurrences();
+        $this->assertProtobufEquals($occurrences, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -174,7 +203,12 @@ class GrafeasClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new BatchCreateOccurrencesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $occurrences = [];
+        $request = (new BatchCreateOccurrencesRequest())
+            ->setParent($formattedParent)
+            ->setOccurrences($occurrences);
         try {
             $gapicClient->batchCreateOccurrences($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -205,7 +239,14 @@ class GrafeasClientTest extends GeneratedTest
         $expectedResponse->setShortDescription($shortDescription);
         $expectedResponse->setLongDescription($longDescription);
         $transport->addResponse($expectedResponse);
-        $request = new CreateNoteRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $noteId = 'noteId2129224840';
+        $note = new Note();
+        $request = (new CreateNoteRequest())
+            ->setParent($formattedParent)
+            ->setNoteId($noteId)
+            ->setNote($note);
         $response = $gapicClient->createNote($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -213,6 +254,12 @@ class GrafeasClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/grafeas.v1.Grafeas/CreateNote', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNoteId();
+        $this->assertProtobufEquals($noteId, $actualValue);
+        $actualValue = $actualRequestObject->getNote();
+        $this->assertProtobufEquals($note, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -234,7 +281,14 @@ class GrafeasClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateNoteRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $noteId = 'noteId2129224840';
+        $note = new Note();
+        $request = (new CreateNoteRequest())
+            ->setParent($formattedParent)
+            ->setNoteId($noteId)
+            ->setNote($note);
         try {
             $gapicClient->createNote($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -267,7 +321,12 @@ class GrafeasClientTest extends GeneratedTest
         $expectedResponse->setNoteName($noteName);
         $expectedResponse->setRemediation($remediation);
         $transport->addResponse($expectedResponse);
-        $request = new CreateOccurrenceRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $occurrence = new Occurrence();
+        $request = (new CreateOccurrenceRequest())
+            ->setParent($formattedParent)
+            ->setOccurrence($occurrence);
         $response = $gapicClient->createOccurrence($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -275,6 +334,10 @@ class GrafeasClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/grafeas.v1.Grafeas/CreateOccurrence', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getOccurrence();
+        $this->assertProtobufEquals($occurrence, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -296,7 +359,12 @@ class GrafeasClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateOccurrenceRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $occurrence = new Occurrence();
+        $request = (new CreateOccurrenceRequest())
+            ->setParent($formattedParent)
+            ->setOccurrence($occurrence);
         try {
             $gapicClient->createOccurrence($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -321,13 +389,18 @@ class GrafeasClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteNoteRequest();
+        // Mock request
+        $formattedName = $gapicClient->noteName('[PROJECT]', '[NOTE]');
+        $request = (new DeleteNoteRequest())
+            ->setName($formattedName);
         $gapicClient->deleteNote($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/grafeas.v1.Grafeas/DeleteNote', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -349,7 +422,10 @@ class GrafeasClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteNoteRequest();
+        // Mock request
+        $formattedName = $gapicClient->noteName('[PROJECT]', '[NOTE]');
+        $request = (new DeleteNoteRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteNote($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -374,13 +450,18 @@ class GrafeasClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteOccurrenceRequest();
+        // Mock request
+        $formattedName = $gapicClient->occurrenceName('[PROJECT]', '[OCCURRENCE]');
+        $request = (new DeleteOccurrenceRequest())
+            ->setName($formattedName);
         $gapicClient->deleteOccurrence($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/grafeas.v1.Grafeas/DeleteOccurrence', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -402,7 +483,10 @@ class GrafeasClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteOccurrenceRequest();
+        // Mock request
+        $formattedName = $gapicClient->occurrenceName('[PROJECT]', '[OCCURRENCE]');
+        $request = (new DeleteOccurrenceRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteOccurrence($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -433,7 +517,10 @@ class GrafeasClientTest extends GeneratedTest
         $expectedResponse->setShortDescription($shortDescription);
         $expectedResponse->setLongDescription($longDescription);
         $transport->addResponse($expectedResponse);
-        $request = new GetNoteRequest();
+        // Mock request
+        $formattedName = $gapicClient->noteName('[PROJECT]', '[NOTE]');
+        $request = (new GetNoteRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getNote($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -441,6 +528,8 @@ class GrafeasClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/grafeas.v1.Grafeas/GetNote', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -462,7 +551,10 @@ class GrafeasClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetNoteRequest();
+        // Mock request
+        $formattedName = $gapicClient->noteName('[PROJECT]', '[NOTE]');
+        $request = (new GetNoteRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getNote($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -495,7 +587,10 @@ class GrafeasClientTest extends GeneratedTest
         $expectedResponse->setNoteName($noteName);
         $expectedResponse->setRemediation($remediation);
         $transport->addResponse($expectedResponse);
-        $request = new GetOccurrenceRequest();
+        // Mock request
+        $formattedName = $gapicClient->occurrenceName('[PROJECT]', '[OCCURRENCE]');
+        $request = (new GetOccurrenceRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getOccurrence($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -503,6 +598,8 @@ class GrafeasClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/grafeas.v1.Grafeas/GetOccurrence', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -524,7 +621,10 @@ class GrafeasClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetOccurrenceRequest();
+        // Mock request
+        $formattedName = $gapicClient->occurrenceName('[PROJECT]', '[OCCURRENCE]');
+        $request = (new GetOccurrenceRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getOccurrence($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -555,7 +655,10 @@ class GrafeasClientTest extends GeneratedTest
         $expectedResponse->setShortDescription($shortDescription);
         $expectedResponse->setLongDescription($longDescription);
         $transport->addResponse($expectedResponse);
-        $request = new GetOccurrenceNoteRequest();
+        // Mock request
+        $formattedName = $gapicClient->occurrenceName('[PROJECT]', '[OCCURRENCE]');
+        $request = (new GetOccurrenceNoteRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getOccurrenceNote($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -563,6 +666,8 @@ class GrafeasClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/grafeas.v1.Grafeas/GetOccurrenceNote', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -584,7 +689,10 @@ class GrafeasClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetOccurrenceNoteRequest();
+        // Mock request
+        $formattedName = $gapicClient->occurrenceName('[PROJECT]', '[OCCURRENCE]');
+        $request = (new GetOccurrenceNoteRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getOccurrenceNote($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -616,7 +724,10 @@ class GrafeasClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setOccurrences($occurrences);
         $transport->addResponse($expectedResponse);
-        $request = new ListNoteOccurrencesRequest();
+        // Mock request
+        $formattedName = $gapicClient->noteName('[PROJECT]', '[NOTE]');
+        $request = (new ListNoteOccurrencesRequest())
+            ->setName($formattedName);
         $response = $gapicClient->listNoteOccurrences($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -627,6 +738,8 @@ class GrafeasClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/grafeas.v1.Grafeas/ListNoteOccurrences', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -648,7 +761,10 @@ class GrafeasClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListNoteOccurrencesRequest();
+        // Mock request
+        $formattedName = $gapicClient->noteName('[PROJECT]', '[NOTE]');
+        $request = (new ListNoteOccurrencesRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->listNoteOccurrences($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -680,7 +796,10 @@ class GrafeasClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setNotes($notes);
         $transport->addResponse($expectedResponse);
-        $request = new ListNotesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $request = (new ListNotesRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listNotes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -691,6 +810,8 @@ class GrafeasClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/grafeas.v1.Grafeas/ListNotes', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -712,7 +833,10 @@ class GrafeasClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListNotesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $request = (new ListNotesRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listNotes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -744,7 +868,10 @@ class GrafeasClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setOccurrences($occurrences);
         $transport->addResponse($expectedResponse);
-        $request = new ListOccurrencesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $request = (new ListOccurrencesRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listOccurrences($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -755,6 +882,8 @@ class GrafeasClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/grafeas.v1.Grafeas/ListOccurrences', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -776,7 +905,10 @@ class GrafeasClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListOccurrencesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $request = (new ListOccurrencesRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listOccurrences($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -807,7 +939,12 @@ class GrafeasClientTest extends GeneratedTest
         $expectedResponse->setShortDescription($shortDescription);
         $expectedResponse->setLongDescription($longDescription);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateNoteRequest();
+        // Mock request
+        $formattedName = $gapicClient->noteName('[PROJECT]', '[NOTE]');
+        $note = new Note();
+        $request = (new UpdateNoteRequest())
+            ->setName($formattedName)
+            ->setNote($note);
         $response = $gapicClient->updateNote($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -815,6 +952,10 @@ class GrafeasClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/grafeas.v1.Grafeas/UpdateNote', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getNote();
+        $this->assertProtobufEquals($note, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -836,7 +977,12 @@ class GrafeasClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateNoteRequest();
+        // Mock request
+        $formattedName = $gapicClient->noteName('[PROJECT]', '[NOTE]');
+        $note = new Note();
+        $request = (new UpdateNoteRequest())
+            ->setName($formattedName)
+            ->setNote($note);
         try {
             $gapicClient->updateNote($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -869,7 +1015,12 @@ class GrafeasClientTest extends GeneratedTest
         $expectedResponse->setNoteName($noteName);
         $expectedResponse->setRemediation($remediation);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateOccurrenceRequest();
+        // Mock request
+        $formattedName = $gapicClient->occurrenceName('[PROJECT]', '[OCCURRENCE]');
+        $occurrence = new Occurrence();
+        $request = (new UpdateOccurrenceRequest())
+            ->setName($formattedName)
+            ->setOccurrence($occurrence);
         $response = $gapicClient->updateOccurrence($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -877,6 +1028,10 @@ class GrafeasClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/grafeas.v1.Grafeas/UpdateOccurrence', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getOccurrence();
+        $this->assertProtobufEquals($occurrence, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -898,7 +1053,12 @@ class GrafeasClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateOccurrenceRequest();
+        // Mock request
+        $formattedName = $gapicClient->occurrenceName('[PROJECT]', '[OCCURRENCE]');
+        $occurrence = new Occurrence();
+        $request = (new UpdateOccurrenceRequest())
+            ->setName($formattedName)
+            ->setOccurrence($occurrence);
         try {
             $gapicClient->updateOccurrence($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -923,7 +1083,15 @@ class GrafeasClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new BatchCreateNotesResponse();
         $transport->addResponse($expectedResponse);
-        $request = new BatchCreateNotesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $notesValue = new Note();
+        $notes = [
+            'notesKey' => $notesValue,
+        ];
+        $request = (new BatchCreateNotesRequest())
+            ->setParent($formattedParent)
+            ->setNotes($notes);
         $response = $gapicClient->batchCreateNotesAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -931,6 +1099,10 @@ class GrafeasClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/grafeas.v1.Grafeas/BatchCreateNotes', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNotes();
+        $this->assertProtobufEquals($notes, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

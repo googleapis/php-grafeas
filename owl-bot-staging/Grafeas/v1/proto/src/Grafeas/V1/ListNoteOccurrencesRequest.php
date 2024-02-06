@@ -43,7 +43,8 @@ class ListNoteOccurrencesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name   The name of the note to list occurrences for in the form of
-     *                       `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
+     *                       `projects/[PROVIDER_ID]/notes/[NOTE_ID]`. Please see
+     *                       {@see GrafeasClient::noteName()} for help formatting this field.
      * @param string $filter The filter expression.
      *
      * @return \Grafeas\V1\ListNoteOccurrencesRequest
